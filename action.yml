@@ -1,0 +1,24 @@
+name: 'Discord Approval Action'
+description: 'Wait for Discord button interaction approval'
+inputs:
+  discord-bot-token:
+    description: 'Discord Bot Token'
+    required: true
+  channel-id:
+    description: 'Discord Channel ID'
+    required: true
+  title:
+    description: 'Message title'
+    required: true
+  description:
+    description: 'Message description'
+    required: false
+  timeout:
+    description: 'Timeout in seconds'
+    default: '300'
+outputs:
+  approved:
+    description: 'Whether the deployment was approved'
+runs:
+  using: 'node16'
+  main: 'dist/index.js'
