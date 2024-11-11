@@ -4,6 +4,9 @@ inputs:
   discord-bot-token:
     description: 'Discord Bot Token'
     required: true
+  run-id:
+    description: 'Github Run ID'
+    required: false
   channel-id:
     description: 'Discord Channel ID'
     required: true

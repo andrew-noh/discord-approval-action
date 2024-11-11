@@ -17,9 +17,9 @@ class DiscordApproval {
     await this.client.login(this.token);
   }
 
-  async requestApproval(title, description, timeout) {
+  async requestApproval(title, description, timeout, runId) {
     const channel = await this.client.channels.fetch(this.channelId);
-    
+
     const row = new ActionRowBuilder()
       .addComponents(
         new ButtonBuilder()
@@ -55,7 +55,7 @@ class DiscordApproval {
             interaction.customId === 'approve' 
               ? '✅ 승인' 
               : '❌ 거절'
-          } by ${interaction.user.tag}`,
+          } by ${interaction.user.tag}\n\n⚙️ [배포 ACTION 링크](${runId ? `https://github.com/SMCOM-INC/apt-admin-fe/actions/runs/${runId}` : ''})`,
           color: interaction.customId === 'approve' ? 0x00FF00 : 0xFF0000,
           timestamp: new Date()
         }],

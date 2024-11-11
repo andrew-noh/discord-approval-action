@@ -4,6 +4,7 @@ import DiscordApproval from './discord';
 async function run() {
   try {
     const token = getInput('discord-bot-token', { required: true });
+    const runId = getInput('run-id', { required: false }) || '';
     const channelId = getInput('channel-id', { required: true });
     const title = getInput('title', { required: true });
     const description = getInput('description', { required: false }) || '';
@@ -12,7 +13,7 @@ async function run() {
     const approval = new DiscordApproval(token, channelId);
     await approval.initialize();
 
-    const approved = await approval.requestApproval(title, description, timeout);
+    const approved = await approval.requestApproval(title, description, timeout, runId);
     setOutput('approved', approved.toString());
 
     if (!approved) {
